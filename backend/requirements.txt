@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+httpx
+pydantic-settings
+polyline
+cachetools
+python-dotenv
+pytest
+respx

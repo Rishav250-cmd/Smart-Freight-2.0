@@ -1,0 +1,12 @@
+{
+  "assessment": {
+    "origin": {"name": "Delhi", "lat": 28.6139, "lng": 77.209},
+    "destination": {"name": "Mumbai", "lat": 19.076, "lng": 72.8777},
+    "departure_time": "2026-11-28T09:00:00Z",
+    "shipping_mode": "Standard Class",
+    "scheduled_days": 3,
+    "quantity": 2,
+    "order_value": 1500.0,
+    "department": "Apparel"
+  }
+}

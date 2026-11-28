@@ -1,0 +1,10 @@
+{
+  "delay_pct": 21.09,
+  "status": "stable",
+  "expected_delay_hours": 1.05,
+  "breakdown": {"base": 21.09, "weather": 0.0, "traffic": 0.0, "news": 0.0},
+  "route": {"distance_km": 1148.09, "normal_min": 0.0, "traffic_min": 0.0, "traffic_ratio": 1.0, "polyline": "", "source": "osrm"},
+  "weather_points": [],
+  "shap_top5": [],
+  "signals_available": {"route_traffic": false, "weather": false, "news": false}
+}
