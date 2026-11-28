@@ -67,6 +67,14 @@ class Breakdown(APIModel):
     news: float
 
 
+class ContextAdjustments(APIModel):
+    """Contextual changes to delay risk, measured in percentage points."""
+
+    weather: float
+    traffic: float
+    news: float
+
+
 class ShapFactor(APIModel):
     feature: str
     impact: float
