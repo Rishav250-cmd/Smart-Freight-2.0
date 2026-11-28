@@ -1,0 +1,1 @@
+{"shipment_id":"SF-2026-001","simulated":true,"status":"in_transit","events":[{"time":"2026-12-03T08:30:00Z","location":"Delhi Freight Hub","description":"Shipment dispatched"},{"time":"2026-12-04T14:20:00Z","location":"Nagpur","description":"Shipment passed regional transit hub"}]}

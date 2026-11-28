@@ -1,0 +1,7 @@
+[
+  {"region": "North", "shipping_mode": "Standard Class", "late_rate": 0.24, "avg_predicted_risk": 0.31, "n": 184},
+  {"region": "South", "shipping_mode": "Standard Class", "late_rate": 0.29, "avg_predicted_risk": 0.36, "n": 216},
+  {"region": "West", "shipping_mode": "Second Class", "late_rate": 0.21, "avg_predicted_risk": 0.27, "n": 143},
+  {"region": "East", "shipping_mode": "First Class", "late_rate": 0.17, "avg_predicted_risk": 0.22, "n": 98},
+  {"region": "Central", "shipping_mode": "Standard Class", "late_rate": 0.33, "avg_predicted_risk": 0.41, "n": 127}
+]

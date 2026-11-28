@@ -1,0 +1,27 @@
+{
+  "delay_pct": 62.0,
+  "status": "caution",
+  "expected_delay_hours": 9.5,
+  "breakdown": {"base": 45.0, "weather": 8.0, "traffic": 6.0, "news": 3.0},
+  "route": {
+    "distance_km": 2180.4,
+    "normal_min": 1920.0,
+    "traffic_min": 2400.0,
+    "traffic_ratio": 1.25,
+    "polyline": "{ssmDg{fvMnuwGka{C~dzD{ba@~x`QvluCb|{KogfI~o}UjntBjhgY_m{I",
+    "source": "osrm"
+  },
+  "weather_points": [
+    {"lat": 28.6139, "lng": 77.209, "time": "2026-12-03T12:00:00Z", "severity": 0.35, "summary": "Light rain near origin"},
+    {"lat": 21.1458, "lng": 79.0882, "time": "2026-12-04T12:00:00Z", "severity": 0.62, "summary": "Heavy rain along central corridor"},
+    {"lat": 13.0827, "lng": 80.2707, "time": "2026-12-05T12:00:00Z", "severity": 0.48, "summary": "Moderate coastal showers"}
+  ],
+  "shap_top5": [
+    {"feature": "scheduled_days", "impact": 18.4},
+    {"feature": "route_distance_km", "impact": 14.7},
+    {"feature": "shipping_mode_Standard Class", "impact": 11.2},
+    {"feature": "weather_severity", "impact": 8.0},
+    {"feature": "traffic_ratio", "impact": 6.0}
+  ],
+  "signals_available": {"route_traffic": true, "weather": true, "news": true}
+}

@@ -1,0 +1,1 @@
+{"simulated":true,"recommendations":[{"action":"depart_earlier","reason":"Rule-based example recommendation to allow recovery time before the delivery deadline."},{"action":"reserve_weather_buffer","reason":"Rule-based example recommendation for forecast rain along the route."}]}

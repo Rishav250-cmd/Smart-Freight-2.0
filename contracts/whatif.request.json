@@ -1,0 +1,13 @@
+{
+  "assessment": {
+    "origin": {"name": "Delhi Freight Hub", "lat": 28.6139, "lng": 77.209},
+    "destination": {"name": "Chennai Freight Hub", "lat": 13.0827, "lng": 80.2707},
+    "departure_time": "2026-12-02T08:30:00Z",
+    "shipping_mode": "Standard Class",
+    "scheduled_days": 4,
+    "quantity": 24,
+    "order_value": 185000.0,
+    "department": "Electronics"
+  },
+  "changes": {"scheduled_days": 4}
+}
