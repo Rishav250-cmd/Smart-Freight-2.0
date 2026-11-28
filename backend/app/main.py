@@ -10,15 +10,17 @@ from app.config import get_settings
 from app.routers import analytics, assess, history, recommend, track, whatif
 from app.schemas import HealthResponse
 from app.services.routes import close_route_client
+from app.services.weather import close_weather_client
 
 settings = get_settings()
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
-    """Close the shared route HTTP client when the app shuts down."""
+    """Close shared route and weather HTTP clients when the app shuts down."""
     yield
     await close_route_client()
+    await close_weather_client()
 
 
 app = FastAPI(
