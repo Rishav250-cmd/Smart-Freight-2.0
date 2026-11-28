@@ -3,6 +3,7 @@
 from fastapi import APIRouter
 
 from app.schemas import WhatIfRequest, WhatIfResponse
+from app.services.mock_contracts import load_mock_response
 
 router = APIRouter(tags=["whatif"])
 
@@ -14,13 +15,5 @@ router = APIRouter(tags=["whatif"])
     description="Returns illustrative rule-based scenarios; no prediction model is connected yet.",
 )
 async def whatif(request: WhatIfRequest) -> WhatIfResponse:
-    scheduled_days = request.assessment.scheduled_days
-    baseline = min(100.0, 12.0 + scheduled_days * 1.5)
-    return WhatIfResponse(
-        simulated=True,
-        baseline_delay_pct=round(baseline, 2),
-        scenarios=[
-            {"name": "add_one_scheduled_day", "simulated_delay_pct": round(max(0, baseline - 5), 2)},
-            {"name": "requested_changes", "changes": request.changes, "simulated_delay_pct": round(baseline, 2)},
-        ],
-    )
+    """Return the what-if contract example while mock mode is enabled."""
+    return load_mock_response("whatif.response.json", WhatIfResponse)

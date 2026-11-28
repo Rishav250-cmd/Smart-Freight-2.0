@@ -1,0 +1,17 @@
+[
+  {"feature": "scheduled_days", "mean_abs_shap": 0.184},
+  {"feature": "shipping_mode", "mean_abs_shap": 0.161},
+  {"feature": "route_distance_km", "mean_abs_shap": 0.142},
+  {"feature": "order_value", "mean_abs_shap": 0.119},
+  {"feature": "quantity", "mean_abs_shap": 0.103},
+  {"feature": "department", "mean_abs_shap": 0.091},
+  {"feature": "weather_severity", "mean_abs_shap": 0.084},
+  {"feature": "traffic_ratio", "mean_abs_shap": 0.073},
+  {"feature": "customer_segment", "mean_abs_shap": 0.064},
+  {"feature": "payment_type", "mean_abs_shap": 0.058},
+  {"feature": "product_price", "mean_abs_shap": 0.051},
+  {"feature": "discount_rate", "mean_abs_shap": 0.045},
+  {"feature": "market_region", "mean_abs_shap": 0.039},
+  {"feature": "benefit_per_order", "mean_abs_shap": 0.032},
+  {"feature": "news_signal", "mean_abs_shap": 0.026}
+]

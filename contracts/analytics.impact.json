@@ -1,0 +1,7 @@
+{
+  "assumed_penalty_per_breach": 12500.0,
+  "breaches_before": 42,
+  "breaches_after": 29,
+  "saved": 162500.0,
+  "is_simulation": true
+}

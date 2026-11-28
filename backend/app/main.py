@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import get_settings
 from app.routers import analytics, assess, history, recommend, track, whatif
+from app.schemas import HealthResponse
 
 settings = get_settings()
 
@@ -30,7 +31,7 @@ app.include_router(track.router)
 app.include_router(analytics.router)
 
 
-@app.get("/health", tags=["health"], summary="Health check")
-async def health() -> dict[str, str]:
+@app.get("/health", response_model=HealthResponse, tags=["health"], summary="Health check")
+async def health() -> HealthResponse:
     """Report that the API process is responding."""
-    return {"status": "ok"}
+    return HealthResponse(status="ok")

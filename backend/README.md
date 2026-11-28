@@ -2,9 +2,10 @@
 
 FastAPI service for shipment delay-risk workflows. The assessment, what-if,
 recommendation, history, tracking, and analytics handlers currently return mock
-or rule-based data. Their OpenAPI descriptions and `simulated` response fields
-identify this behavior. The prediction model and external signal services are
-not connected yet.
+or rule-based data. With `USE_MOCK=true`, each handler loads its response from
+`/contracts` and validates it with its Pydantic response model. OpenAPI
+descriptions and `simulated` response fields identify mock behavior. The
+prediction model and external signal services are not connected yet.
 
 ## Setup
 
@@ -54,8 +55,13 @@ python -m pytest
 | POST | `/whatif` | Mock scenario analysis |
 | POST | `/recommend` | Mock recommendations |
 | GET | `/history` | Mock assessment history |
-| GET | `/track/{shipment_id}` | Mock shipment tracking |
-| GET | `/analytics/summary` | Mock aggregate metrics |
-| GET | `/analytics/trends` | Mock trend data |
+| GET | `/track/{id}` | Mock shipment tracking |
+| GET | `/analytics/threshold` | Mock threshold metrics |
+| GET | `/analytics/impact` | Mock impact estimates |
+| GET | `/analytics/lanes` | Mock lane metrics |
+| GET | `/analytics/shap` | Mock feature impacts |
+| GET | `/analytics/calibration` | Mock calibration metrics |
 
 Request and response examples live in the repository-level `contracts/` folder.
+If mock mode is disabled before live services are connected, these endpoints
+return HTTP 501.

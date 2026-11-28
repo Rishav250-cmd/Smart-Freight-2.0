@@ -1,10 +1,10 @@
 {
-  "origin": {"name": "Delhi", "lat": 28.6139, "lng": 77.209},
-  "destination": {"name": "Mumbai", "lat": 19.076, "lng": 72.8777},
-  "departure_time": "2026-11-28T09:00:00Z",
+  "origin": {"name": "Delhi Freight Hub", "lat": 28.6139, "lng": 77.209},
+  "destination": {"name": "Chennai Freight Hub", "lat": 13.0827, "lng": 80.2707},
+  "departure_time": "2026-12-02T08:30:00Z",
   "shipping_mode": "Standard Class",
-  "scheduled_days": 3,
-  "quantity": 2,
-  "order_value": 1500.0,
-  "department": "Apparel"
+  "scheduled_days": 4,
+  "quantity": 24,
+  "order_value": 185000.0,
+  "department": "Electronics"
 }

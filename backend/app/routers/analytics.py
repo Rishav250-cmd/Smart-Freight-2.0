@@ -1,27 +1,64 @@
 """Mock analytics endpoints."""
 
-from typing import Any
-
 from fastapi import APIRouter
+
+from app.schemas import (
+    CalibrationAnalytics,
+    ImpactAnalytics,
+    LanesAnalytics,
+    ShapAnalytics,
+    ThresholdAnalytics,
+)
+from app.services.mock_contracts import load_mock_response
 
 router = APIRouter(prefix="/analytics", tags=["analytics"])
 
 
 @router.get(
-    "/summary",
-    response_model=dict[str, Any],
-    summary="Mock analytics summary",
-    description="Returns illustrative aggregate metrics until analytics storage is connected.",
+    "/threshold",
+    response_model=ThresholdAnalytics,
+    summary="Mock threshold analytics",
+    description="Returns simulated example metrics loaded from the analytics threshold contract.",
 )
-async def summary() -> dict[str, Any]:
-    return {"simulated": True, "shipment_count": 0, "average_delay_pct": None}
+async def threshold() -> ThresholdAnalytics:
+    return load_mock_response("analytics.threshold.json", ThresholdAnalytics)
 
 
 @router.get(
-    "/trends",
-    response_model=dict[str, Any],
-    summary="Mock analytics trends",
-    description="Returns empty illustrative trend data until analytics storage is connected.",
+    "/impact",
+    response_model=ImpactAnalytics,
+    summary="Mock impact analytics",
+    description="Returns simulated impact estimates loaded from the analytics impact contract.",
 )
-async def trends() -> dict[str, Any]:
-    return {"simulated": True, "points": []}
+async def impact() -> ImpactAnalytics:
+    return load_mock_response("analytics.impact.json", ImpactAnalytics)
+
+
+@router.get(
+    "/lanes",
+    response_model=LanesAnalytics,
+    summary="Mock lane analytics",
+    description="Returns simulated lane metrics loaded from the analytics lanes contract.",
+)
+async def lanes() -> LanesAnalytics:
+    return load_mock_response("analytics.lanes.json", LanesAnalytics)
+
+
+@router.get(
+    "/shap",
+    response_model=ShapAnalytics,
+    summary="Mock SHAP analytics",
+    description="Returns simulated aggregate feature impacts loaded from the analytics SHAP contract.",
+)
+async def shap() -> ShapAnalytics:
+    return load_mock_response("analytics.shap.json", ShapAnalytics)
+
+
+@router.get(
+    "/calibration",
+    response_model=CalibrationAnalytics,
+    summary="Mock calibration analytics",
+    description="Returns simulated calibration metrics loaded from the analytics calibration contract.",
+)
+async def calibration() -> CalibrationAnalytics:
+    return load_mock_response("analytics.calibration.json", CalibrationAnalytics)

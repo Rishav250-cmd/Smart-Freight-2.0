@@ -3,6 +3,7 @@
 from fastapi import APIRouter
 
 from app.schemas import HistoryResponse
+from app.services.mock_contracts import load_mock_response
 
 router = APIRouter(tags=["history"])
 
@@ -14,4 +15,5 @@ router = APIRouter(tags=["history"])
     description="Returns an empty mock history until persistence is connected.",
 )
 async def get_history() -> HistoryResponse:
-    return HistoryResponse(simulated=True, items=[])
+    """Return the history contract example while mock mode is enabled."""
+    return load_mock_response("history.response.json", HistoryResponse)

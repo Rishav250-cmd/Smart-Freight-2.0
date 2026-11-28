@@ -3,7 +3,7 @@
 from datetime import datetime
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, RootModel, model_validator
 
 
 class APIModel(BaseModel):
@@ -83,6 +83,10 @@ class AssessResponse(APIModel):
     signals_available: dict[Literal["route_traffic", "weather", "news"], bool]
 
 
+class HealthResponse(APIModel):
+    status: Literal["ok"]
+
+
 class WhatIfRequest(APIModel):
     assessment: AssessRequest
     changes: dict[str, Any] = Field(default_factory=dict)
@@ -92,10 +96,6 @@ class WhatIfResponse(APIModel):
     simulated: bool
     baseline_delay_pct: float = Field(ge=0, le=100)
     scenarios: list[dict[str, Any]]
-
-
-class RecommendRequest(APIModel):
-    assessment: AssessRequest
 
 
 class RecommendResponse(APIModel):
@@ -115,4 +115,70 @@ class TrackResponse(APIModel):
     events: list[dict[str, Any]]
 
 
-AnalyticsResponse = dict[str, Any]
+class ThresholdHistogram(APIModel):
+    bins: list[float]
+    late: list[int]
+    on_time: list[int]
+
+    @model_validator(mode="after")
+    def arrays_have_equal_length(self) -> "ThresholdHistogram":
+        if not (len(self.bins) == len(self.late) == len(self.on_time)):
+            raise ValueError("score_histogram bins, late, and on_time arrays must have equal length")
+        return self
+
+
+class ThresholdAnalytics(APIModel):
+    thresholds: list[float]
+    precision: list[float]
+    recall: list[float]
+    f1: list[float]
+    flagged: list[int]
+    score_histogram: ThresholdHistogram
+
+    @model_validator(mode="after")
+    def arrays_have_equal_length(self) -> "ThresholdAnalytics":
+        lengths = {len(self.thresholds), len(self.precision), len(self.recall), len(self.f1), len(self.flagged)}
+        if len(lengths) != 1:
+            raise ValueError("thresholds, precision, recall, f1, and flagged arrays must have equal length")
+        return self
+
+
+class ImpactAnalytics(APIModel):
+    assumed_penalty_per_breach: float
+    breaches_before: int
+    breaches_after: int
+    saved: float
+    is_simulation: Literal[True]
+
+
+class LaneMetric(APIModel):
+    region: str
+    shipping_mode: str
+    late_rate: float
+    avg_predicted_risk: float
+    n: int
+
+
+class LanesAnalytics(RootModel[list[LaneMetric]]):
+    """Analytics lane rows."""
+
+
+class ShapFeature(APIModel):
+    feature: str
+    mean_abs_shap: float
+
+
+class ShapAnalytics(RootModel[list[ShapFeature]]):
+    """Ranked aggregate SHAP values."""
+
+
+class CalibrationAnalytics(APIModel):
+    bin_mean_predicted: list[float]
+    bin_fraction_positive: list[float]
+    brier: float
+
+    @model_validator(mode="after")
+    def calibration_bins_have_equal_length(self) -> "CalibrationAnalytics":
+        if len(self.bin_mean_predicted) != len(self.bin_fraction_positive):
+            raise ValueError("calibration bin arrays must have equal length")
+        return self
