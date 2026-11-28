@@ -22,11 +22,12 @@ cp .env.example .env
 On Windows PowerShell, activate the virtual environment with
 `.venv\\Scripts\\Activate.ps1`.
 
-Set `GOOGLE_MAPS_SERVER_KEY` only in the local `backend/.env` when a backend
-Google Maps integration is added. Do not expose the server key in frontend code.
+The route service uses `GOOGLE_MAPS_SERVER_KEY` from the local `backend/.env`
+for Google Routes API requests and falls back to public OSRM routing if Google
+is unavailable. Do not expose the server key in frontend code.
 `ALLOWED_ORIGINS` accepts comma-separated origins; `http://localhost:3000` is
 always allowed. `USE_MOCK` defaults to `true`, and `CACHE_TTL_SECONDS` defaults
-to `300`.
+to `300` for route caching.
 
 ## Run
 

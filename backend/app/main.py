@@ -1,18 +1,31 @@
 """FastAPI application entry point."""
 
+from contextlib import asynccontextmanager
+from collections.abc import AsyncIterator
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import get_settings
 from app.routers import analytics, assess, history, recommend, track, whatif
 from app.schemas import HealthResponse
+from app.services.routes import close_route_client
 
 settings = get_settings()
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+    """Close the shared route HTTP client when the app shuts down."""
+    yield
+    await close_route_client()
+
 
 app = FastAPI(
     title="SmartFreight API",
     description="Shipment delay risk API. Endpoints marked mock return simulated or rule-based data.",
     version="0.1.0",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
